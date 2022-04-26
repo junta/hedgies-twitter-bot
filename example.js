@@ -1,3 +1,3 @@
-const tweet = require("./tweet");
+const tweet = require('./tweet');
 
-tweet.tweet("✅  Hedgie Sold! \n \n 🦔");
+tweet.tweet('✅  Hedgie Sold! \n \n 🦔');
