@@ -1,7 +1,6 @@
 const _ = require('lodash');
 const { ethers } = require('ethers');
 const tweet = require('./tweet');
-require('dotenv').config();
 const requestEvents = require('./requestEvents');
 
 async function newListings() {

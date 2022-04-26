@@ -1,15 +1,13 @@
 const axios = require('axios');
 const _ = require('lodash');
 const moment = require('moment');
-const { ethers } = require('ethers');
-const tweet = require('./tweet');
 require('dotenv').config();
 const { API_URL } = require('./constants');
 
 async function request(event_type) {
-	// const lastTime = moment().startOf("minute").subtract(59, "seconds").unix();
+	const lastTime = moment().startOf('minute').subtract(59, 'seconds').unix();
 	// const lastTime = moment().startOf("minute").subtract(37, "hours").unix();
-	const lastTime = moment().startOf('minute').subtract(2, 'hours').unix();
+	// const lastTime = moment().startOf('minute').subtract(2, 'hours').unix();
 	let response;
 
 	try {

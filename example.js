@@ -7,4 +7,5 @@ const rarity = require('./services/getRarity');
 // tweet.tweet('✅  Hedgie Sold! \n \n 🦔');
 
 // stats.tweetStats();
-rarity.getRarity('1965');
+const result = rarity.getRarity('1965');
+console.log(result.score);
