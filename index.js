@@ -1,17 +1,21 @@
 // import cron from "node-cron";
 // import { lastEvent } from "event";
 var cron = require('node-cron');
-const sale = require('./newSales');
-const list = require('./newListings');
-const stats = require('./requestStats');
+const sale = require('./services/newSales');
+const list = require('./services/newListings');
+const stats = require('./services/dailyStats');
 
-// cron.schedule("* * * * *", async () => {
-//   console.log("cron start");
-//   await event.lastEvent();
-// });
+cron.schedule('* * * * *', async () => {
+	list.newListings();
+	sale.newSales();
+});
+
+cron.schedule('10 15 * * *', async () => {
+	stats.tweetStats();
+});
 
 // cron.schedule("*/5 * * * * *", async () => {
 // list.newListings();
 // sale.newSales();
 // });
-stats.request();
+stats.tweetStats();
