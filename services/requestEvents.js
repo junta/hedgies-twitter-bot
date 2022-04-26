@@ -6,7 +6,7 @@ const { API_URL } = require('./constants');
 
 async function request(event_type) {
 	const lastTime = moment().startOf('minute').subtract(59, 'seconds').unix();
-	// const lastTime = moment().startOf("minute").subtract(37, "hours").unix();
+	// const lastTime = moment().startOf('minute').subtract(37, 'hours').unix();
 	// const lastTime = moment().startOf('minute').subtract(2, 'hours').unix();
 	let response;
 

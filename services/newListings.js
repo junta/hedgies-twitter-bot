@@ -2,6 +2,7 @@ const _ = require('lodash');
 const { ethers } = require('ethers');
 const tweet = require('./tweet');
 const requestEvents = require('./requestEvents');
+const rarity = require('./getRarity');
 
 async function newListings() {
 	const events = await requestEvents.request('created');
@@ -31,9 +32,13 @@ async function newListings() {
 		const formattedEthPrice = formattedUnits * tokenEthPrice;
 		const formattedUsdPrice = formattedUnits * tokenUsdPrice;
 
+		const { rank, score } = rarity.getRarity(tokenId);
+
 		const tweetText = `✅  ${assetName} New Listing! \n \n 💰️ Price: ${formattedEthPrice}${
 			ethers.constants.EtherSymbol
-		} ($${Number(formattedUsdPrice).toFixed(1)})  ${openseaLink}`;
+		} ($${Number(formattedUsdPrice).toFixed(
+			1
+		)}) \n Rarity Rank: #${rank} ${openseaLink}`;
 
 		return tweet.tweet(tweetText);
 	});
