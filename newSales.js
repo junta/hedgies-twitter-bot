@@ -3,10 +3,10 @@ const _ = require("lodash");
 const { ethers } = require("ethers");
 const tweet = require("./tweet");
 require("dotenv").config();
-const request = require("./request");
+const requestEvents = require("./requestEvents");
 
 async function newSales() {
-  const events = await request.request("successful");
+  const events = await requestEvents.request("successful");
 
   _.each(events, (event) => {
     // format tweet text

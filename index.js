@@ -3,6 +3,7 @@
 var cron = require("node-cron");
 const sale = require("./newSales");
 const list = require("./newListings");
+const stats = require("./requestStats");
 
 // cron.schedule("* * * * *", async () => {
 //   console.log("cron start");
@@ -10,6 +11,7 @@ const list = require("./newListings");
 // });
 
 // cron.schedule("*/5 * * * * *", async () => {
-list.newListings();
+// list.newListings();
 // sale.newSales();
 // });
+stats.request();
