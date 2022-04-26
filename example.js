@@ -1,3 +1,3 @@
 const tweet = require("./tweet");
 
-tweet.tweet("hi");
+tweet.tweet("Hedgie Sold! \n aa");

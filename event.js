@@ -14,6 +14,7 @@ function formatAndSendTweet(event) {
     ["asset", "name"],
     _.get(event, ["asset_bundle", "name"])
   );
+
   const openseaLink = _.get(
     event,
     ["asset", "permalink"],
@@ -21,6 +22,7 @@ function formatAndSendTweet(event) {
   );
 
   const totalPrice = _.get(event, "total_price");
+  const tokenId = _.get(event, ["asset", "token_id"]);
 
   const tokenDecimals = _.get(event, ["payment_token", "decimals"]);
   const tokenUsdPrice = _.get(event, ["payment_token", "usd_price"]);
@@ -30,9 +32,10 @@ function formatAndSendTweet(event) {
   const formattedEthPrice = formattedUnits * tokenEthPrice;
   const formattedUsdPrice = formattedUnits * tokenUsdPrice;
 
-  const tweetText = `${assetName} bought for ${formattedEthPrice}${
-    ethers.constants.EtherSymbol
-  } ($${Number(formattedUsdPrice).toFixed(2)}) #NFT ${openseaLink}`;
+  const tweetText = `✅  ${assetName} Sold! \n \n
+  💰️ Price: ${formattedEthPrice}${ethers.constants.EtherSymbol} ($${Number(
+    formattedUsdPrice
+  ).toFixed(1)})  ${openseaLink}`;
 
   console.log(tweetText);
 
@@ -50,10 +53,15 @@ function formatAndSendTweet(event) {
 }
 
 // Poll OpenSea every 60 seconds & retrieve all sales for a given collection in either the time since the last sale OR in the last minute
-setInterval(() => {
+async function lastEvent() {
+  // const lastSaleTime =
+  //   cache.get("lastSaleTime", null) ||
+  //   moment().startOf("minute").subtract(59, "seconds").unix();
+
   const lastSaleTime =
     cache.get("lastSaleTime", null) ||
-    moment().startOf("minute").subtract(59, "seconds").unix();
+    moment().startOf("minute").subtract(40, "hours").unix();
+  console.log(lastSaleTime);
 
   console.log(
     `Last sale (in seconds since Unix epoch): ${cache.get(
@@ -87,6 +95,7 @@ setInterval(() => {
 
       _.each(sortedEvents, (event) => {
         const created = _.get(event, "created_date");
+        console.log(event);
 
         cache.set("lastSaleTime", moment(created).unix());
 
@@ -96,4 +105,8 @@ setInterval(() => {
     .catch((error) => {
       console.error(error);
     });
-}, 60000);
+}
+
+module.exports = {
+  lastEvent: lastEvent,
+};
