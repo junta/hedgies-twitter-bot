@@ -5,9 +5,9 @@ require('dotenv').config();
 const { API_URL } = require('./constants');
 
 async function request(event_type) {
-	// const lastTime = moment().startOf('minute').subtract(59, 'seconds').unix();
+	const lastTime = moment().startOf('minute').subtract(59, 'seconds').unix();
 
-	const lastTime = moment().startOf('minute').subtract(50, 'hours').unix();
+	// const lastTime = moment().startOf('minute').subtract(50, 'hours').unix();
 	let response;
 
 	try {
