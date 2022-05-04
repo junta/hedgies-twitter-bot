@@ -1,13 +1,13 @@
 const _ = require('lodash');
 const tweet = require('./tweet');
 const requestStats = require('./requestStats');
-const { setTimeout } = require('timers/promises');
+// const { setTimeout } = require('timers/promises');
 
 async function tweetStats() {
 	const stats = await requestStats.request();
 
 	dailystats1(stats);
-	await setTimeout(3000);
+	// await setTimeout(3000);
 	dailystats2(stats);
 }
 
