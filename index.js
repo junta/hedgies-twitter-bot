@@ -8,6 +8,10 @@ cron.schedule('* * * * *', async () => {
 	sale.newSales();
 });
 
-cron.schedule('10 15 * * *', async () => {
+cron.schedule('0 0 * * *', async () => {
 	stats.tweetStats();
 });
+
+// list.newListings();
+// sale.newSales();
+// stats.tweetStats();

@@ -2,6 +2,7 @@ const _ = require('lodash');
 const { ethers } = require('ethers');
 const tweet = require('./tweet');
 const requestEvents = require('./requestEvents');
+const rarity = require('./getRarity');
 
 async function newSales() {
 	const events = await requestEvents.request('successful');
@@ -31,11 +32,19 @@ async function newSales() {
 		const formattedEthPrice = formattedUnits * tokenEthPrice;
 		const formattedUsdPrice = formattedUnits * tokenUsdPrice;
 
-		const tweetText = `✅  ${assetName} Sold! \n \n 💰️ Price: ${formattedEthPrice}${
-			ethers.constants.EtherSymbol
-		} ($${Number(formattedUsdPrice).toFixed(1)})  ${openseaLink}`;
+		const { rank, score } = rarity.getRarity(tokenId);
 
-		return tweet.tweet(tweetText);
+		const tweetText = `Sold 🔥 ${assetName} \n
+		💰️ Price: ${formattedEthPrice} ETH ($${Number(formattedUsdPrice).toFixed(1)}) 
+		💎 Rarity Score: ${score}
+		👑 Rarity Rank: #${rank} 
+		${openseaLink}`;
+
+		// return tweet.tweet(tweetText);
+		return tweet.tweetWithImage(
+			tweetText,
+			'https://i.postimg.cc/qv2nb4SS/Banner-Props.png'
+		);
 	});
 }
 

@@ -34,11 +34,11 @@ async function newListings() {
 
 		const { rank, score } = rarity.getRarity(tokenId);
 
-		const tweetText = `✅  ${assetName} New Listing! \n \n 💰️ Price: ${formattedEthPrice}${
-			ethers.constants.EtherSymbol
-		} ($${Number(formattedUsdPrice).toFixed(
-			1
-		)}) \n Rarity Rank: #${rank} ${openseaLink}`;
+		const tweetText = `New Listing ✅  ${assetName} \n
+		💰️ Price: ${formattedEthPrice} ETH ($${Number(formattedUsdPrice).toFixed(1)}) 
+		💎 Rarity Score: ${score}
+		👑 Rarity Rank: #${rank} 
+		${openseaLink}`;
 
 		return tweet.tweet(tweetText);
 	});
