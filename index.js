@@ -13,6 +13,6 @@ cron.schedule('0 0 * * *', async () => {
 	stats.tweetStats();
 });
 
-cron.schedule('15 30 * * *', async () => {
+cron.schedule('30 15 * * *', async () => {
 	dailyComp.tweetDailyComp();
 });
