@@ -1,8 +1,5 @@
 const axios = require('axios');
 const _ = require('lodash');
-const moment = require('moment');
-const { ethers } = require('ethers');
-const tweet = require('./tweet');
 require('dotenv').config();
 const { API_URL } = require('./constants');
 
