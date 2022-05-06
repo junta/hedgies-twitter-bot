@@ -11,5 +11,5 @@ const requestEvents = require('./services/requestEvents');
 // stats.tweetStats();
 // const result = rarity.getRarity('1965');
 // console.log(result.score);
-// dailyComp.tweetDailyComp();
-requestEvents.request('successful');
+dailyComp.tweetDailyComp();
+// requestEvents.request('successful');

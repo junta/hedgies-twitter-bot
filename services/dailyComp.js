@@ -2,7 +2,7 @@ const _ = require('lodash');
 const tweet = require('./tweet');
 const requestDailyComp = require('./requestDailyComp');
 rarity = require('./getRarity');
-const { HEDGIE_URL } = require('./constants');
+const { HEDGIE_URL, HEDGIE_IMAGE_URL } = require('./constants');
 
 async function tweetDailyComp() {
 	const dailyComp = await requestDailyComp.request();
@@ -21,7 +21,9 @@ async function tweetDailyComp() {
 		👑 Rarity Rank: #${rank} 
 		${url}`;
 
-	return tweet.tweet(tweetText);
+	const imageUrl = HEDGIE_IMAGE_URL + tokenId + '.png';
+	// return tweet.tweet(tweetText);
+	return tweet.tweetWithImage(tweetText, imageUrl);
 }
 
 module.exports = {
