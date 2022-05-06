@@ -60,7 +60,7 @@ function dailystats2(stats) {
 	Daily Volume: ${VolumeFormatted} ETH 
 	7 Day Avg. Price: ${sevenDaysPrice.toFixed(2)} ETH
 	7 Day Volume:  ${sevenDaysVolumeFormatted} ETH
-	30 Day Avg. Price:  ${thirtyDaysPrice} ETH
+	30 Day Avg. Price:  ${thirtyDaysPrice.toFixed(2)} ETH
 	30 Day Volume: ${thirtyDaysVolumeFormatted} ETH
 	`;
 
