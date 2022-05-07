@@ -30,7 +30,7 @@ function dailystats1(stats) {
 	const tweetText = `📈 Daily Stats 1 \n
 	Floor Price: ${floorPrice} ETH 
 	Total Volume: ${totalVolumeFormatted} ETH 
-	Hegie Owners: ${numOwnersFormatted} addresses
+	Hedgie Owners: ${numOwnersFormatted} addresses
 	Total Supply: ${totalSupplyFormatted} hedgies
 	Market Cap: ${marketCapFormatted} ETH
 	`;
