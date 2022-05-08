@@ -34,7 +34,7 @@ async function request(event_type) {
 		return new Date(created);
 	});
 
-	console.log(`${events.length} events since the last one...`);
+	// console.log(`${events.length} events since the last one...`);
 
 	return sortedEvents;
 }
