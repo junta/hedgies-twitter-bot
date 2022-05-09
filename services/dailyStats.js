@@ -56,7 +56,7 @@ function dailystats2(stats) {
 	});
 
 	const tweetText = `📈 Daily Stats 2 \n
-	Daily Avg. Price: ${price} ETH 
+	Daily Avg. Price: ${price.toFixed(2)} ETH 
 	Daily Volume: ${VolumeFormatted} ETH 
 	7 Day Avg. Price: ${sevenDaysPrice.toFixed(2)} ETH
 	7 Day Volume:  ${sevenDaysVolumeFormatted} ETH

@@ -1,18 +1,18 @@
 {
-	"name": "opensea-sales-twitter-bot",
+	"name": "hedgies-twitter-bot",
 	"version": "1.0.0",
-	"description": "Twitter bot tweeting Opensea sales for a given collection",
+	"description": "Twitter bot tweeting new listing, sales and stats of Hedgies",
 	"main": "index.js",
 	"scripts": {
 		"start": "node index.js",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
-	"author": "Daniel Griffin (http://github.com/dsgriffin)",
+	"author": "0xIbuki (https://twitter.com/CryptoIbuki)",
 	"license": "ISC",
 	"bugs": {
-		"url": "https://github.com/dsgriffin/opensea-sales-twitter-bot/issues"
+		"url": "https://github.com/junta/hedgies-twitter-bot/issues"
 	},
-	"homepage": "http://github.com/dsgriffin/opensea-sales-twitter-bot",
+	"homepage": "https://github.com/junta/hedgies-twitter-bot",
 	"dependencies": {
 		"axios": "^0.21.1",
 		"csv-parse": "^5.0.4",
