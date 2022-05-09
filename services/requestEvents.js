@@ -9,7 +9,7 @@ const { Config } = require('node-json-db/dist/lib/JsonDBConfig');
 async function request(event_type) {
 	const db = new JsonDB(new Config('data/hedgiesEvent', true, false, '/'));
 	const lastTime = db.getData('/' + event_type);
-	console.log(event_type, ' lastTime: ', storedLastTime);
+	console.log(event_type, ' lastTime: ', lastTime);
 
 	// const lastTime = moment().startOf('minute').subtract(50, 'hours').unix();
 	let response;
