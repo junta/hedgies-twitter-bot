@@ -7,9 +7,10 @@ const dailyComp = require('./services/dailyComp');
 const requestEvents = require('./services/requestEvents');
 const { JsonDB } = require('node-json-db');
 const { Config } = require('node-json-db/dist/lib/JsonDBConfig');
+const moment = require('moment');
 
 // tweet.tweet('✅  Hedgie Sold! \n \n 🦔');
-list.newListings();
+// list.newListings();
 // stats.tweetStats();
 // const result = rarity.getRarity('1965');
 // console.log(result.score);

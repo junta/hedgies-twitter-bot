@@ -22,7 +22,7 @@ async function request(event_type) {
 			params: {
 				collection_slug: 'hedgies',
 				event_type: event_type,
-				occurred_after: lastTime,
+				occurred_after: Number(lastTime) + 1,
 				only_opensea: 'false'
 			}
 		});
@@ -30,23 +30,29 @@ async function request(event_type) {
 		console.error(error);
 	}
 
+	// console.log('response', response);
 	if (!response) return;
 
 	const events = _.get(response, ['data', 'asset_events']);
 
-	// sortedEvents = _.sortBy(events, function (event) {
-	// 	const created = _.get(event, 'created_date');
-	// 	return new Date(created);
-	// });
-
-	_.each(events, (event) => {
+	sortedEvents = _.sortBy(events, function (event) {
 		const created = _.get(event, 'created_date');
-		db.push('/' + event_type, moment(created).unix());
+		return new Date(created);
+	});
+
+	_.each(sortedEvents, (event) => {
+		const created = _.get(event, 'created_date');
+
+		const unixUtc = moment.utc(created).unix();
+		// console.log(created, '', unixUtc);
+		if (unixUtc > Number(lastTime)) {
+			db.push('/' + event_type, unixUtc);
+		}
 	});
 
 	// console.log(`${events.length} events since the last one...`);
 
-	return events;
+	return sortedEvents;
 }
 
 module.exports = {
