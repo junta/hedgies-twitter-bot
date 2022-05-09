@@ -34,19 +34,19 @@ async function request(event_type) {
 
 	const events = _.get(response, ['data', 'asset_events']);
 
-	sortedEvents = _.sortBy(events, function (event) {
-		const created = _.get(event, 'created_date');
-		return new Date(created);
-	});
+	// sortedEvents = _.sortBy(events, function (event) {
+	// 	const created = _.get(event, 'created_date');
+	// 	return new Date(created);
+	// });
 
-	_.each(sortedEvents, (event) => {
+	_.each(events, (event) => {
 		const created = _.get(event, 'created_date');
 		db.push('/' + event_type, moment(created).unix());
 	});
 
 	// console.log(`${events.length} events since the last one...`);
 
-	return sortedEvents;
+	return events;
 }
 
 module.exports = {
