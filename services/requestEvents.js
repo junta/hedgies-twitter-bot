@@ -3,9 +3,13 @@ const _ = require('lodash');
 const moment = require('moment');
 require('dotenv').config();
 const { API_URL } = require('./constants');
+const { JsonDB } = require('node-json-db');
+const { Config } = require('node-json-db/dist/lib/JsonDBConfig');
 
 async function request(event_type) {
-	const lastTime = moment().startOf('minute').subtract(60, 'seconds').unix();
+	const db = new JsonDB(new Config('data/hedgiesEvent', true, false, '/'));
+	const lastTime = db.getData('/' + event_type);
+	console.log(event_type, ' lastTime: ', storedLastTime);
 
 	// const lastTime = moment().startOf('minute').subtract(50, 'hours').unix();
 	let response;
@@ -22,7 +26,7 @@ async function request(event_type) {
 				only_opensea: 'false'
 			}
 		});
-	} catch {
+	} catch (error) {
 		console.error(error);
 	}
 
@@ -30,8 +34,12 @@ async function request(event_type) {
 
 	sortedEvents = _.sortBy(events, function (event) {
 		const created = _.get(event, 'created_date');
-
 		return new Date(created);
+	});
+
+	_.each(sortedEvents, (event) => {
+		const created = _.get(event, 'created_date');
+		db.push('/' + event_type, moment(created).unix());
 	});
 
 	// console.log(`${events.length} events since the last one...`);

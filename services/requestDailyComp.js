@@ -11,7 +11,7 @@ async function request() {
 			DYDX_API_URL + 'hedgies/current?nftRevealType=daily',
 			{}
 		);
-	} catch {
+	} catch (error) {
 		console.error(error);
 	}
 

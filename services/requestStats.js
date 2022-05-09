@@ -12,7 +12,7 @@ async function request() {
 				'X-API-KEY': process.env.X_API_KEY
 			}
 		});
-	} catch {
+	} catch (error) {
 		console.error(error);
 	}
 

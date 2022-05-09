@@ -1,6 +1,7 @@
 # Hedgies Twitter Bot 🤖
 
-Twitter bot tweeting new listing, sales and stats of Hedgies NFT collection.
+- Twitter bot tweeting new listing, sales and stats of [Hedgies NFT collection](https://opensea.io/collection/hedgies).
+- Account: https://twitter.com/HedgiesInfo
 
 ## Data Sources
 
