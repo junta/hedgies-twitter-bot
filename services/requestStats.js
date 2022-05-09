@@ -16,6 +16,8 @@ async function request() {
 		console.error(error);
 	}
 
+	if (!response) return;
+
 	const stats = _.get(response, ['data', 'stats']);
 	console.log(stats);
 

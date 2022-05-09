@@ -6,6 +6,8 @@ const requestStats = require('./requestStats');
 async function tweetStats() {
 	const stats = await requestStats.request();
 
+	if (!stats) return;
+
 	dailystats1(stats);
 	// await setTimeout(3000);
 	dailystats2(stats);

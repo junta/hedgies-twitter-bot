@@ -6,6 +6,8 @@ const { HEDGIE_URL, HEDGIE_IMAGE_URL } = require('./constants');
 
 async function tweetDailyComp() {
 	const dailyComp = await requestDailyComp.request();
+	if (!dailyComp) return;
+
 	const tokenId = _.get(dailyComp, 'tokenIds')[0];
 	const period = _.get(dailyComp, 'competitionPeriod');
 

@@ -14,6 +14,7 @@ async function request() {
 	} catch (error) {
 		console.error(error);
 	}
+	if (!response) return;
 
 	const data = _.get(response, ['data', 'daily']);
 	console.log(data);

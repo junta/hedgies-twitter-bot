@@ -7,6 +7,8 @@ const rarity = require('./getRarity');
 async function newSales() {
 	const events = await requestEvents.request('successful');
 
+	if (!events) return;
+
 	_.each(events, (event) => {
 		// format tweet text
 		const assetName = _.get(

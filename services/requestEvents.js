@@ -30,6 +30,8 @@ async function request(event_type) {
 		console.error(error);
 	}
 
+	if (!response) return;
+
 	const events = _.get(response, ['data', 'asset_events']);
 
 	sortedEvents = _.sortBy(events, function (event) {
