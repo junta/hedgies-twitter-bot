@@ -1,5 +1,6 @@
 const axios = require('axios');
 const twit = require('twit');
+const fs = require('fs');
 require('dotenv').config();
 
 const twitterConfig = {
@@ -27,9 +28,14 @@ async function tweet(tweetText) {
 }
 
 // OPTIONAL - use this method if you want the tweet to include the full image file of the OpenSea item in the tweet.
-async function tweetWithImage(tweetText, imageUrl) {
+async function tweetWithImage(tweetText, tokenId, url) {
 	// Format our image to base64
-	const processedImage = await getBase64(imageUrl);
+	let processedImage;
+	if (tokenId) {
+		processedImage = await getBase64Local(tokenId);
+	} else {
+		processedImage = await getBase64(url);
+	}
 
 	// Upload the item's image from OpenSea to Twitter & retrieve a reference to it
 	twitterClient.post(
@@ -60,7 +66,14 @@ async function tweetWithImage(tweetText, imageUrl) {
 	);
 }
 
-// Format a provided URL into it's base64 representation
+// convert local image into it's base64 representation
+function getBase64Local(tokenId) {
+	const filePath = './images/' + tokenId + '.jpg';
+	const base64Data = fs.readFileSync(filePath, { encoding: 'base64' });
+	// return 'data:image/jpeg;base64,' + base64Data;
+	return base64Data;
+}
+
 function getBase64(url) {
 	return axios
 		.get(url, { responseType: 'arraybuffer' })

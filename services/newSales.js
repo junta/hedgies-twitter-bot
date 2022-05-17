@@ -42,11 +42,8 @@ async function newSales() {
 		👑 Rarity Rank: #${rank} 
 		${openseaLink}`;
 
-		return tweet.tweet(tweetText);
-		// return tweet.tweetWithImage(
-		// 	tweetText,
-		// 	'https://i.postimg.cc/qv2nb4SS/Banner-Props.png'
-		// );
+		// return tweet.tweet(tweetText);
+		return tweet.tweetWithImage(tweetText, tokenId, null);
 	});
 }
 
