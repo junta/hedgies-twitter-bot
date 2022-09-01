@@ -30,6 +30,8 @@ async function newListings() {
 		const tokenUsdPrice = _.get(event, ['payment_token', 'usd_price']);
 		const tokenEthPrice = _.get(event, ['payment_token', 'eth_price']);
 
+		if (!price || !tokenDecimals || !tokenUsdPrice || !tokenEthPrice) return;
+
 		const formattedUnits = ethers.utils.formatUnits(price, tokenDecimals);
 		const formattedEthPrice = formattedUnits * tokenEthPrice;
 		const formattedUsdPrice = formattedUnits * tokenUsdPrice;
