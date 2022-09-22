@@ -45,12 +45,7 @@ async function newListings() {
 		${openseaLink}`;
 
 		// return tweet.tweet(tweetText);
-		// TODO: temporary blocking
-		if (tokenId == '178' || tokenId == '3233') {
-			return;
-		} else {
-			return tweet.tweetWithImage(tweetText, tokenId, null);
-		}
+		return tweet.tweetWithImage(tweetText, tokenId, null);
 	});
 }
 
