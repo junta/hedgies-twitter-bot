@@ -5,6 +5,7 @@ const requestEvents = require('./requestEvents');
 const rarity = require('./getRarity');
 
 async function newListings() {
+	const blackList = ['2183', '1067', '1200'];
 	const events = await requestEvents.request('created');
 
 	if (!events) return;
@@ -45,7 +46,12 @@ async function newListings() {
 		${openseaLink}`;
 
 		// return tweet.tweet(tweetText);
-		return tweet.tweetWithImage(tweetText, tokenId, null);
+		// TODO: temporary blocking
+		if (blackList.includes(tokenId)) {
+			return;
+		} else {
+			return tweet.tweetWithImage(tweetText, tokenId, null);
+		}
 	});
 }
 
