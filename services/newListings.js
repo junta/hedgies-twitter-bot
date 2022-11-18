@@ -3,12 +3,16 @@ const { ethers } = require('ethers');
 const tweet = require('./tweet');
 const requestEvents = require('./requestEvents');
 const rarity = require('./getRarity');
+const { JsonDB } = require('node-json-db');
+const { Config } = require('node-json-db/dist/lib/JsonDBConfig');
 
 async function newListings() {
-	const blackList = ['2183', '1067', '1200'];
+	const blackList = ['2183', '1067', '1200', '2018'];
 	const events = await requestEvents.request('created');
 
 	if (!events) return;
+
+	const db = new JsonDB(new Config('data/hedgiesEvent', true, false, '/'));
 
 	_.each(events, (event) => {
 		// format tweet text
@@ -36,6 +40,8 @@ async function newListings() {
 		const formattedUnits = ethers.utils.formatUnits(price, tokenDecimals);
 		const formattedEthPrice = formattedUnits * tokenEthPrice;
 		const formattedUsdPrice = formattedUnits * tokenUsdPrice;
+
+		// db.push('/listing/' + tokenId + '/lastPrice', price);
 
 		const { rank, score } = rarity.getRarity(tokenId);
 
