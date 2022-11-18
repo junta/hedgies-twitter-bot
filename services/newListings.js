@@ -5,6 +5,7 @@ const requestEvents = require('./requestEvents');
 const rarity = require('./getRarity');
 const { JsonDB } = require('node-json-db');
 const { Config } = require('node-json-db/dist/lib/JsonDBConfig');
+const moment = require('moment');
 
 async function newListings() {
 	const events = await requestEvents.request('created');
@@ -49,9 +50,23 @@ async function newListings() {
 			return;
 		}
 
-		db.push('/listing/' + tokenId + '/lastPrice', price);
-
 		const created = _.get(event, 'created_date');
+
+		let lastListingDate;
+		try {
+			lastListingDate = db.getData('/listing/' + tokenId + '/createdDate');
+			console.log('token ID: ' + tokenId + ' lastListingDate: ' + lastListingDate);
+		} catch {
+			console.log('no lastListingDate data of token ID: ' + tokenId);
+		}
+
+		if (lastListingDate && moment(created).diff(moment(lastListingDate), 'days') < 1) {
+			console.log('same day listing');
+			return;
+		}
+
+
+		db.push('/listing/' + tokenId + '/lastPrice', price);
 		db.push('/listing/' + tokenId + '/createdDate', created);
 
 		const formattedUnits = ethers.utils.formatUnits(price, tokenDecimals);
