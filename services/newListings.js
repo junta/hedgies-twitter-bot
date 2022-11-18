@@ -7,7 +7,7 @@ const { JsonDB } = require('node-json-db');
 const { Config } = require('node-json-db/dist/lib/JsonDBConfig');
 
 async function newListings() {
-	const blackList = ['2183', '1067', '1200', '2018'];
+	const blackList = ['2183', '1067', '1200', '2018', '3059'];
 	const events = await requestEvents.request('created');
 
 	if (!events) return;
@@ -37,11 +37,18 @@ async function newListings() {
 
 		if (!price || !tokenDecimals || !tokenUsdPrice || !tokenEthPrice) return;
 
+		// try {
+		// 	const tokenLastPrice = db.getData('/listing' + tokenId + '/lastPrice');
+		// } catch {
+		// 	console.log('no tokenLastPrice data');
+		// }
+
+		// console.log(tokenLastPrice);
+		// db.push('/listing/' + tokenId + '/lastPrice', price);
+
 		const formattedUnits = ethers.utils.formatUnits(price, tokenDecimals);
 		const formattedEthPrice = formattedUnits * tokenEthPrice;
 		const formattedUsdPrice = formattedUnits * tokenUsdPrice;
-
-		// db.push('/listing/' + tokenId + '/lastPrice', price);
 
 		const { rank, score } = rarity.getRarity(tokenId);
 
