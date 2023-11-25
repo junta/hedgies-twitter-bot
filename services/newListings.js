@@ -55,16 +55,20 @@ async function newListings() {
 		let lastListingDate;
 		try {
 			lastListingDate = db.getData('/listing/' + tokenId + '/createdDate');
-			console.log('token ID: ' + tokenId + ' lastListingDate: ' + lastListingDate);
+			console.log(
+				'token ID: ' + tokenId + ' lastListingDate: ' + lastListingDate
+			);
 		} catch {
 			console.log('no lastListingDate data of token ID: ' + tokenId);
 		}
 
-		if (lastListingDate && moment(created).diff(moment(lastListingDate), 'days') < 1) {
+		if (
+			lastListingDate &&
+			moment(created).diff(moment(lastListingDate), 'days') < 1
+		) {
 			console.log('same day listing');
 			return;
 		}
-
 
 		db.push('/listing/' + tokenId + '/lastPrice', price);
 		db.push('/listing/' + tokenId + '/createdDate', created);
@@ -81,8 +85,8 @@ async function newListings() {
 		👑 Rarity Rank: #${rank} 
 		${openseaLink}`;
 
-		// return tweet.tweet(tweetText);
-		return tweet.tweetWithImage(tweetText, tokenId, null);
+		return tweet.tweet(tweetText);
+		// return tweet.tweetWithImage(tweetText, tokenId, null);
 	});
 }
 

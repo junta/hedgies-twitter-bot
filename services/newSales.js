@@ -45,8 +45,8 @@ async function newSales() {
 		👑 Rarity Rank: #${rank} 
 		${openseaLink}`;
 
-		// return tweet.tweet(tweetText);
-		return tweet.tweetWithImage(tweetText, tokenId, null);
+		return tweet.tweet(tweetText);
+		// return tweet.tweetWithImage(tweetText, tokenId, null);
 	});
 }
 

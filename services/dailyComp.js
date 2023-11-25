@@ -24,8 +24,8 @@ async function tweetDailyComp() {
 		${url}`;
 
 	const imageUrl = HEDGIE_IMAGE_URL + tokenId + '.png';
-	// return tweet.tweet(tweetText);
-	return tweet.tweetWithImage(tweetText, null, imageUrl);
+	return tweet.tweet(tweetText);
+	// return tweet.tweetWithImage(tweetText, null, imageUrl);
 }
 
 module.exports = {
